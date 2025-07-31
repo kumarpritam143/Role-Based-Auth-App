@@ -5,102 +5,246 @@
     <title>Admin Dashboard</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
-        margin: 40px;
-        background-color: #f9f9f9;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        background-color: #eef5ff;
+        color: #333;
+        overflow-x: hidden;
       }
 
-      h2,
+      /* Header Styles */
+      .header {
+        background-color: #343a40;
+        color: white;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .header h2 {
+        margin: 0;
+        font-size: 2em;
+        font-weight: normal;
+      }
+
+      .logout-btn {
+        background-color: #dc3545;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s ease;
+      }
+
+      .logout-btn:hover {
+        background-color: #c82333;
+      }
+
+      /* Main Content Styles */
+      .container {
+        padding: 20px;
+        margin: 20px auto;
+        max-width: 1200px;
+        background-color: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+
       h3 {
-        color: #333;
+        color: #343a40;
+        border-bottom: 2px solid #343a40;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+      }
+
+      /* Form Styles */
+      form {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px;
+        margin-bottom: 30px;
+      }
+
+      input,
+      select,
+      button {
+        padding: 12px 15px;
+        border-radius: 5px;
+        border: 1px solid #ced4da;
+        font-size: 1em;
+      }
+
+      input:focus,
+      select:focus {
+        border-color: #007bff;
+        outline: none;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
       }
 
       button {
-        padding: 8px 12px;
-        margin-top: 10px;
         background-color: #007bff;
-        border: none;
         color: white;
+        border: none;
         cursor: pointer;
-        border-radius: 4px;
+        transition: background-color 0.3s ease;
       }
 
       button:hover {
         background-color: #0056b3;
       }
 
-      form {
-        margin-bottom: 20px;
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      input,
-      select {
-        padding: 6px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-      }
-
+      /* Table Styles */
       table {
         width: 100%;
         border-collapse: collapse;
-        background-color: white;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin-bottom: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
       }
 
       th,
       td {
-        border: 1px solid #ddd;
-        padding: 10px;
+        padding: 15px;
         text-align: left;
+        border-bottom: 1px solid #ddd;
       }
 
       th {
-        background-color: #f2f2f2;
+        background-color: #f8f9fa;
+        color: #555;
+        font-weight: 600;
+      }
+
+      tbody tr:hover {
+        background-color: #f5f5f5;
+        transition: background-color 0.3s ease;
       }
 
       td input {
-        width: 90%;
-        padding: 4px;
+        width: 95%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+      }
+
+      /* Action Buttons */
+      .action-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+      }
+
+      .action-buttons button {
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        color: white;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .action-buttons button.update {
+        background-color: #28a745;
+      }
+
+      .action-buttons button.delete {
+        background-color: #dc3545;
+      }
+
+      .action-buttons button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      /* Animation */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(-10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-in {
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      /* Utility Classes */
+      .text-center {
+        text-align: center;
+      }
+
+      /* Media Queries for Responsiveness */
+      @media (max-width: 768px) {
+        .container {
+          padding: 15px;
+          margin: 15px auto;
+        }
+
+        form {
+          grid-template-columns: 1fr;
+        }
+
+        .header {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .header h2 {
+          margin-bottom: 10px;
+        }
       }
     </style>
   </head>
   <body>
-    <h2>Welcome Admin</h2>
-    <p><strong>Logged in as:</strong> <span id="userRole"></span></p>
+    <div class="header">
+      <h2>Admin Dashboard</h2>
+      <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
 
-    <button onclick="logout()">Logout</button>
+    <div class="container">
+      <h3>Add New User</h3>
 
-    <h3>Add New User</h3>
+      <form id="createForm">
+        <input type="email" id="newUsername" placeholder="Email" required />
 
-    <form id="createForm">
-      <input type="email" id="newUsername" placeholder="Email" required />
+        <select id="newRole" required>
+          <option value="Admin">Admin</option>
+          <option value="Student">Student</option>
+        </select>
 
-      <select id="newRole" required>
-        <option value="Admin">Admin</option>
-        <option value="Student">Student</option>
-      </select>
+        <input
+          type="password"
+          id="newPassword"
+          placeholder="Password"
+          required
+        />
 
-      <input type="password" id="newPassword" placeholder="Password" required />
+        <button type="submit">Add User</button>
+      </form>
 
-      <button type="submit">Add User</button>
-    </form>
+      <h3>All Users</h3>
 
-    <h3>All Users</h3>
-
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Username</th>
-          <th>Role</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="userTableBody"></tbody>
-    </table>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Username</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="userTableBody"></tbody>
+      </table>
+    </div>
 
     <script src="../config.js"></script>
 
@@ -132,9 +276,9 @@
         <td>${user.id}</td>
         <td><input type="text" value="${user.username}" id="username-${user.id}" /></td>
         <td><input type="text" value="${user.role}" id="role-${user.id}" /></td>
-        <td>
-          <button onclick="updateUser(${user.id})">Update</button>
-          <button onclick="deleteUser(${user.id})">Delete</button>
+        <td class="action-buttons">
+          <button class="update" onclick="updateUser(${user.id})">Update</button>
+          <button class="delete" onclick="deleteUser(${user.id})">Delete</button>
         </td>
       `;
             tbody.appendChild(row);
