@@ -29,3 +29,8 @@ Navigate to the cloned folder.
 Move the entire folder Role-Based-Auth-App into your XAMPP htdocs directory:
 
 C:/xampp/htdocs/
+
+3. ▶️ Start Apache and MySQL
+   Open the XAMPP Control Panel.
+
+Click Start on both Apache and MySQL modules.
