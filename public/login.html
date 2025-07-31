@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #1d2b64, #f8cdda);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login-container {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        text-align: center;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px 15px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        font-size: 16px;
+        transition: 0.3s ease;
+      }
+
+      input:focus {
+        border-color: #0072ff;
+        outline: none;
+        box-shadow: 0 0 5px #0072ff66;
+      }
+
+      button {
+        background-color: #0072ff;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 8px;
+        cursor: pointer;
+        margin-top: 10px;
+        width: 100%;
+        transition: background-color 0.3s ease;
+      }
+
+      button:hover {
+        background-color: #005ddd;
+      }
+
+      #msg {
+        margin-top: 15px;
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login to Your Account</h2>
+      <form id="loginForm">
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          required
+        /><br />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        /><br />
+        <button type="submit">Login</button>
+        <p id="msg"></p>
+      </form>
+    </div>
+    <script src="../config.js"></script>
+    <script>
+      const form = document.getElementById("loginForm");
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const formData = new FormData(form);
+        try {
+          const response = await fetch(LOGIN_URL, {
+            method: "POST",
+            body: formData,
+            credentials: "include",
+          });
+
+          const result = await response.json();
+          console.log(result);
+
+          if (result.success) {
+            if (result.role === "admin") {
+              window.location.href = "dashboard.html";
+            } else {
+              window.location.href = "welcome.html";
+            }
+          } else {
+            document.getElementById("msg").innerText =
+              result.message || "Login failed.";
+          }
+        } catch (err) {
+          console.error("Error:", err);
+          document.getElementById("msg").innerText = "Server error. Try again.";
+        }
+      });
+    </script>
+  </body>
+</html>
