@@ -43,7 +43,7 @@ Create a new database named: Role-Based Authentication Web Application
 Click Import → Choose the users.sql file from the project → Click Go
 
 5. 🛠️ Configure Database Connection
-   Open the db.php file and make sure the following credentials are correct:
+   Open the database.php file and make sure the following credentials are correct:
 
 $host = 'localhost';
 $username = 'root';
