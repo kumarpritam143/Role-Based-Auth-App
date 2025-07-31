@@ -49,3 +49,8 @@ $host = 'localhost';
 $username = 'root';
 $password = '';
 $database = 'role_auth_db';
+
+6. 🌐 Run the Application
+   Open your browser and go to:
+
+http://localhost/Role-Based-Auth-App
