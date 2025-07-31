@@ -20,6 +20,12 @@ This is a simple web application built using **PHP** and **MySQL** that demonstr
 ## 🚀 Getting Started
 
 1. Clone the repo:
-   ```bash
+
    git clone https://github.com/kumarpritam143/Role-Based-Auth-App.git
-   ```
+
+2. 📂 Move Project to XAMPP htdocs
+
+Navigate to the cloned folder.
+Move the entire folder Role-Based-Auth-App into your XAMPP htdocs directory:
+
+C:/xampp/htdocs/
