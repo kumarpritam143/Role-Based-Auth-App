@@ -41,3 +41,11 @@ Click Start on both Apache and MySQL modules.
 Create a new database named: role_auth_db
 
 Click Import → Choose the database.sql file from the project → Click Go
+
+5. 🛠️ Configure Database Connection
+   Open the db.php file and make sure the following credentials are correct:
+
+$host = 'localhost';
+$username = 'root';
+$password = '';
+$database = 'role_auth_db';
