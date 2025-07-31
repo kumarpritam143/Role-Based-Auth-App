@@ -34,3 +34,10 @@ C:/xampp/htdocs/
    Open the XAMPP Control Panel.
 
 Click Start on both Apache and MySQL modules.
+
+4. 🗄️ Import the Database
+   Open http://localhost/phpmyadmin
+
+Create a new database named: role_auth_db
+
+Click Import → Choose the database.sql file from the project → Click Go
